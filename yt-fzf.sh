@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-API_FILE="API.txt"
+API_FILE="$HOME/.config/yt-fzf/API.txt"
 if [ ! -f "$API_FILE" ]; then
   echo "No API file found."
   exit 1

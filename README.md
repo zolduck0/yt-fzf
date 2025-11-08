@@ -15,3 +15,5 @@ Downloads your videos entirely through the terminal.
 #### 
 
 Current this script only downloads .mp3. This is simply a personal configuration that works best for me. You can make it download videos by removing `-x --audio-format mp3` at line 50. (I may turn this into an option later).
+
+Although the name is similar, this project wasn't inspired by [yt-fzf](https://github.com/pystardust/ytfzf). You should still check it out though.

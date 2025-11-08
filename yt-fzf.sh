@@ -29,7 +29,7 @@ if [ ${#results[@]} -eq 0 ]; then
   exit 1
 fi
 
-selection=$(printf "%s\n" "${results[@]}" | fzf --prompt="Choose a video to download: ")
+selection=$(printf "%s\n" "${results[@]}" | fzf-tmux -p --reverse --prompt="Choose a video to download: ")
 
 if [ -z "$selection" ]; then
   echo "No videos found."

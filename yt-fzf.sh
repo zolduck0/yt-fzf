@@ -38,8 +38,16 @@ fi
 
 videoId=$(echo "$selection" | awk -F'|' '{print $2}' | xargs)
 
+CONFIG_FILE="$HOME/.config/yt-fzf/config"
+DOWNLOAD_DIR=$(grep '^DOWNLOAD_DIR=' "$CONFIG_FILE" | cut -d'=' -f2- | xargs)
+
+if [ -z "$DOWNLOAD_DIR" ]; then
+  echo "Download directory missing or invalid, downloading on current folder..."
+  DOWNLOAD_DIR="."
+fi
+
 if [ -n "$videoId" ]; then
-  yt-dlp -x --audio-format mp3 "https://www.youtube.com/watch?v=$videoId"
+  yt-dlp -x --audio-format mp3 -o "$DOWNLOAD_DIR/%(title)s.%(ext)s" "https://www.youtube.com/watch?v=$videoId"
 else
   echo "Invalid video id."
   exit 1

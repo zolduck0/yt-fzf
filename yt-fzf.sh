@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-API_KEY=''
+API_KEY=$(cat API.txt)
 QUERY="$1"
 
 response=$(curl -s "https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=20&q=${QUERY// /+}&key=$API_KEY")

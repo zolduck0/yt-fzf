@@ -7,6 +7,20 @@ if [ ! -f "$API_FILE" ]; then
 fi
 
 API_KEY=$(tr -d ' \n\r' <"$API_FILE")
+MODE="VIDEO"
+
+case "$1" in
+-a)
+  MODE="AUDIO"
+  ;;
+-h)
+  echo "yt-fzf [option]"
+  echo "yt-fzf - Downloads videos."
+  echo "-a - Downloads audio only."
+  echo "-h for help."
+  exit 1
+  ;;
+esac
 
 if [ -z "$1" ]; then
   read -p "Search for videos: " QUERY

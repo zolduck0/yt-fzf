@@ -2,8 +2,10 @@
 
 API_FILE="$HOME/.config/yt-fzf/API.txt"
 if [ ! -f "$API_FILE" ]; then
-  echo "No API file found."
-  exit 1
+  echo "No API file found. Paste your API key here: (if you don't have an API key, you can generate a free one at https://console.cloud.google.com)"
+  read -r API_KEY
+  echo "$API_KEY" >"$API_FILE"
+  echo "API key saved at $API_FILE"
 fi
 
 API_KEY=$(tr -d ' \n\r' <"$API_FILE")

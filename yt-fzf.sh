@@ -15,8 +15,8 @@ case "$1" in
   ;;
 -h)
   echo "yt-fzf [option]"
-  echo "yt-fzf - Downloads videos."
-  echo "-a - Downloads audio only."
+  echo "yt-fzf - Downloads videos (.mp4 by default)."
+  echo "-a - Downloads audio only (.mp3 by default)."
   echo "-h for help."
   exit 1
   ;;

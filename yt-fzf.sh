@@ -58,13 +58,16 @@ fi
 
 ARGUMENT=""
 case "$MODE" in
--a)
+"AUDIO")
   ARGUMENT="-x --audio-format mp3"
   ;;
 esac
 
+echo "ARGUMENT: $ARGUMENT"
+
 if [ -n "$videoId" ]; then
-  yt-dlp "$ARGUMENT" -o "$DOWNLOAD_DIR/%(title)s.%(ext)s" "https://www.youtube.com/watch?v=$videoId"
+  args=($ARGUMENT)
+  yt-dlp "${args[@]}" -o "$DOWNLOAD_DIR/%(title)s.%(ext)s" "https://www.youtube.com/watch?v=$videoId"
 else
   echo "Invalid video id."
   exit 1

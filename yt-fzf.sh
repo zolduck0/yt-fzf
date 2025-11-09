@@ -58,6 +58,9 @@ fi
 
 ARGUMENT=""
 case "$MODE" in
+"VIDEO")
+  ARGUMENT="-t mp4"
+  ;;
 "AUDIO")
   ARGUMENT="-x --audio-format mp3"
   ;;

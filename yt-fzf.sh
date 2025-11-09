@@ -22,11 +22,7 @@ case "$1" in
   ;;
 esac
 
-if [ -z "$1" ]; then
-  read -p "Search for videos: " QUERY
-else
-  QUERY="$*"
-fi
+read -p "Search for videos: " QUERY
 
 response=$(curl -s "https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=20&q=${QUERY// /+}&key=$API_KEY")
 
@@ -60,8 +56,15 @@ if [ -z "$DOWNLOAD_DIR" ]; then
   DOWNLOAD_DIR="."
 fi
 
+ARGUMENT=""
+case "$MODE" in
+-a)
+  ARGUMENT="-x --audio-format mp3"
+  ;;
+esac
+
 if [ -n "$videoId" ]; then
-  yt-dlp -x --audio-format mp3 -o "$DOWNLOAD_DIR/%(title)s.%(ext)s" "https://www.youtube.com/watch?v=$videoId"
+  yt-dlp "$ARGUMENT" -o "$DOWNLOAD_DIR/%(title)s.%(ext)s" "https://www.youtube.com/watch?v=$videoId"
 else
   echo "Invalid video id."
   exit 1
